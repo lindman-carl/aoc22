@@ -6,24 +6,6 @@ const handScore = {
   Z: 3,
 };
 
-const win = {
-  X: "C",
-  Y: "A",
-  Z: "B",
-};
-
-const draw = {
-  X: "A",
-  Y: "B",
-  Z: "C",
-};
-
-const requiredResults = {
-  X: "lose",
-  Y: "draw",
-  Z: "win",
-};
-
 const hands = {
   A: {
     lose: "Z",
