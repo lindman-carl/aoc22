@@ -17,7 +17,6 @@ const part1 = () => {
       return;
     }
 
-    let score = 0;
     const duplicates = [];
 
     const rucksacks = data.split("\n");
@@ -39,16 +38,18 @@ const part1 = () => {
         if (cache.hasOwnProperty(el)) {
           // found duplicate
           duplicates.push(el);
-          return false;
+          return false; // breaks out of .every
         }
 
         return true;
       });
     });
 
-    duplicates.forEach((el) => {
-      score += getAlphaIndex(el);
-    });
+    // count score
+    const score = duplicates.reduce(
+      (acc, curr) => acc + getAlphaIndex(curr),
+      0
+    );
 
     console.log(score);
   });
@@ -62,7 +63,6 @@ const part2 = () => {
     }
 
     let score = 0;
-    const badges = [];
 
     const rucksacks = data.split("\n");
     let groupUniqueItems = {};
