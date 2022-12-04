@@ -10,6 +10,14 @@ const getAlphaIndex = (c) => {
   }
 };
 
+const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const alphabetIndexMap = {};
+alphabet.split("").forEach((el, index) => (alphabetIndexMap[el] = index + 1));
+
+const getAlphaIndex2 = (c) => {
+  return alphabetIndexMap[c];
+};
+
 const part1 = () => {
   readFile("./input.txt", "utf-8", (err, data) => {
     if (err) {
@@ -47,7 +55,7 @@ const part1 = () => {
 
     // count score
     const score = duplicates.reduce(
-      (acc, curr) => acc + getAlphaIndex(curr),
+      (acc, curr) => acc + getAlphaIndex2(curr),
       0
     );
 
@@ -70,7 +78,7 @@ const part2 = () => {
     rucksacks.forEach((rucksack, index) => {
       // grouping by three
       if (index % 3 === 0) {
-        groupUniqueItems = {};
+        groupUniqueItems = {}; // clear cache
       }
 
       // count all items
@@ -97,7 +105,7 @@ const part2 = () => {
       if (index % 3 === 2) {
         for (let key in groupUniqueItems) {
           if (groupUniqueItems[key] === 3) {
-            score += getAlphaIndex(key);
+            score += getAlphaIndex2(key);
             break;
           }
         }
